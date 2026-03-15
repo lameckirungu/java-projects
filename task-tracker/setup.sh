@@ -21,12 +21,12 @@ if command -v java &> /dev/null; then
     JAVA_VERSION=$(java -version 2>&1 | head -n 1)
     echo "✓ Java found: $JAVA_VERSION"
 else
-    echo "✗ Java not found. Installing Java 17..."
+    echo "✗ Java not found. Installing Java 21..."
     if command -v apt-get &> /dev/null; then
         sudo apt-get update
-        sudo apt-get install -y openjdk-17-jdk
+        sudo apt-get install -y openjdk-21-jdk
     elif command -v brew &> /dev/null; then
-        brew install openjdk@17
+        brew install openjdk@21
     else
         echo "Please install Java 17 manually and try again."
         exit 1
@@ -79,8 +79,8 @@ cat > "$PROJECT_ROOT/pom.xml" << 'EOF'
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
     <build>
@@ -90,8 +90,8 @@ cat > "$PROJECT_ROOT/pom.xml" << 'EOF'
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>21</source>
+                    <target>21</target>
                 </configuration>
             </plugin>
             <plugin>
