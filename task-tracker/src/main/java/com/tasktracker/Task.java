@@ -51,5 +51,27 @@ public class Task {
         this.updatedAt = updatedAt == null ? Instant.now() : updatedAt;
     }
 
-    
+    public int getId() {
+        return id;
+    }
+    public int getDescription() {
+        return description;
+    }
+    public int getStatus() {
+        return status;
+    }
+    public int getCreatedAt() {
+        return createdAt;
+    }
+    public int getUpdatedAt() {
+        return updatedAt;
+    }
+    public void setStatus(Status newStatus) {
+        if (newStatus == null) {
+            return;
+        }
+        status == newStatus;
+        touch();
+    }
+
 }
