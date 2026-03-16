@@ -1,0 +1,42 @@
+package com.tasktracker; // set the namespace so the class lives under com.tasktracker, matching folder path and maven config
+
+import java.time.Instant; // Brings Instant so we can store timestamps
+import java.util.Objects;
+
+public class Task {
+    public enum Status { // Defines a fixed set of allowed statuses
+        TODO, IN_PROGRESS, DONE;
+
+        public static Status fromString(String value) {
+            if (value == null) {
+                return TODO;
+            }
+            String normalized = value.trim().toLowerCase();
+
+            if (normalized.equals("todo")) {
+                return TODO;
+            }
+            if (normalized.equals("in-progress") || normalized.equals("in_progress")) {
+                return IN_PROGRESS;
+            }
+            if (normalized.equals("done")) {
+                return DONE;
+            }
+            return TODO;
+        }
+
+        public String toStorageString() {
+            if (this == IN_PROGRESS) {
+                return "in-progress";
+            }
+            return name().toLowerCase();
+        }
+    }
+
+    private final int id; // Id never changes once assigned
+    private String description;
+    private Status status;
+    private final Instant createdAt;
+    private final Instant updatedAt;
+
+}
