@@ -38,5 +38,18 @@ public class Task {
     private Status status;
     private final Instant createdAt;
     private final Instant updatedAt;
+    
+    public Task(int id, String description) {
+        this(id, description, Status.TODO, Instant.now(), Instant.now());
+    }
 
+    public Task(int id, String description, Status status, Instant createdAt, Instant updatedAt) {
+        this.id = id;
+        this.description = description;
+        this.status = status == null ? Status.TODO : status;
+        this.createdAt = createdAt == null ? Instant.now() : createdAt;
+        this.updatedAt = updatedAt == null ? Instant.now() : updatedAt;
+    }
+
+    
 }
