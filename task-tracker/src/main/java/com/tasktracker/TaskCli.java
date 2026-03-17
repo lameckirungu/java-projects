@@ -76,3 +76,21 @@ public class TaskCli {
         return value.equals("--help") || value.equals("-h") || value.equals("help");
     }
 
+    private static void printHelp() {
+        System.out.println("Task Tracker CLI");
+        System.out.println("");
+        System.out.println("Usage:");
+        System.out.println("  task-cli add \"description\"");
+        System.out.println("  task-cli update <id> \"description\"");
+        System.out.println("  task-cli delete <id>");
+        System.out.println("  task-cli mark-in-progress <id>");
+        System.out.println("  task-cli mark-done <id>");
+        System.out.println("  task-cli list [all|todo|in-progress|done]");
+        System.out.println("");
+        System.out.println("Examples:");
+        System.out.println("  task-cli add \"Buy groceries\"");
+        System.out.println("  task-cli list");
+        System.out.println("  task-cli list done");
+    }
+
+}
