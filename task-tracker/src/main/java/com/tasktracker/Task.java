@@ -7,7 +7,7 @@ public class Task {
     public enum Status { // Defines a fixed set of allowed statuses
         TODO, IN_PROGRESS, DONE;
 
-        public static Status fromString(String value) {
+        public static Status fromString(String value) { // adds a safe parser for status strings coming from tasks.json or CLI inputs.
             if (value == null) {
                 return TODO;
             }
@@ -37,11 +37,11 @@ public class Task {
     private String description;
     private Status status;
     private final Instant createdAt;
-    private final Instant updatedAt;
+    private Instant updatedAt; // changes whenever we modify the task
     
     public Task(int id, String description) {
         this(id, description, Status.TODO, Instant.now(), Instant.now());
-    }
+    } // convenience constructor for new tasks
 
     public Task(int id, String description, Status status, Instant createdAt, Instant updatedAt) {
         this.id = id;
@@ -49,29 +49,68 @@ public class Task {
         this.status = status == null ? Status.TODO : status;
         this.createdAt = createdAt == null ? Instant.now() : createdAt;
         this.updatedAt = updatedAt == null ? Instant.now() : updatedAt;
-    }
+    } // full constructor used by storage when re-hydrating tasks
 
     public int getId() {
         return id;
     }
-    public int getDescription() {
+    public String getDescription() {
         return description;
     }
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
-    public int getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
-    public int getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void updateDescription(String newDescription) {
+        if (newDescription == null || newDescription.trim().isEmpty()) {
+            return; // prevents blank descriptions from overwriting good data.
+        }
+        description = newDescription;
+        touch(); // refreshes updatedAt whenever data changes
     }
     public void setStatus(Status newStatus) {
         if (newStatus == null) {
             return;
         }
-        status == newStatus;
+        status = newStatus;
         touch();
+    }
+
+    public void touch() {
+        updatedAt = Instant.now();
+    }
+
+    @Override // signals we're overriding Object methods
+    public String toString() {
+        return "Task{" +
+            "id=" + id +
+            ", description='" + description + '\'' +
+            ", status=" + status +
+            ", createdAt=" + createdAt +
+            ", updatedAt=" + updatedAt +
+            '}'; // Builds a standard debug format.
+    }
+
+    @Override
+    public boolean equals(Object other) { // Defines equality as "same task ID"
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Task)) {
+            return false;
+        }
+        Task task = (Task) other; // safe cast after type check
+        return id == task.id; // Two tasks with the same ID are treated as the saem task
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
 }
