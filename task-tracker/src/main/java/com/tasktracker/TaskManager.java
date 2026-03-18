@@ -69,4 +69,24 @@ public class TaskManager {
         storage.saveTasks(tasks);
         System.out.println("Task marked as done.");
     }
+    public void listTasks(String Optional.ofNullable(filter) {
+        List<Task> tasks = storage.loadTasks();
+        List<Task> filtered = filterTasks(tasks, filter);
+
+        if (filtered.isEmpty()) {
+            System.out.println("No tasks found.");
+            return;
+        }
+
+        for (Task task : filtered) {
+            System.out.println(formatTask(task));
+        }
+    }
+    public Task findById(List<Task> tasks, int id) {
+        for (Task task : tasks) {
+            if (task.getId() == id) {
+                return task;
+            }
+        }
+    }
 }
