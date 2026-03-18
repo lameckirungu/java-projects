@@ -57,4 +57,16 @@ public class TaskManager {
         storage.saveTasks(tasks);
         System.out.println("Task marked as in-progress");
     }
+    public void markDone(int id) {
+        List<Task> tasks = storage.loadTasks();
+        Task task = findById(tasks, id);
+
+        if (task == null) {
+        System.err.println("Task not found.");
+        }
+
+        task.setStatus(Task.Status.DONE);
+        storage.saveTasks(tasks);
+        System.out.println("Task marked as done.");
+    }
 }
