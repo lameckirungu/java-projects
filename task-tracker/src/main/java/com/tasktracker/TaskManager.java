@@ -32,4 +32,16 @@ public class TaskManager {
         storage.saveTasks(tasks);
         System.out.println("Task updated successfully (ID: " + id + ")");
     }
+
+    public void update(int id) {
+        List<Task> tasks = storage.loadTasks();
+        Task task = findById(tasks, id);
+    }
+    if (task == null) {
+        System.err.println("Task not found.");
+    }
+
+    task.remove(task);
+    storage.saveTasks(tasks);
+    System.out.println("Task Deleted successfully");
 }
