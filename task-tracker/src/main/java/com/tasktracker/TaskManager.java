@@ -44,4 +44,17 @@ public class TaskManager {
     task.remove(task);
     storage.saveTasks(tasks);
     System.out.println("Task Deleted successfully");
+
+    public void markInProgress(int id) {
+        List<Task> tasks = storage.loadTasks();
+        Task task = findById(tasks, id);
+
+        if (task == null) {
+        System.err.println("Task not found.");
+        }
+
+        task.setStatus(Task.Status.IN_PROGRESS);
+        storage.saveTasks(tasks);
+        System.out.println("Task marked as in-progress");
+    }
 }
