@@ -69,7 +69,7 @@ public class TaskManager {
         storage.saveTasks(tasks);
         System.out.println("Task marked as done.");
     }
-    public void listTasks(String Optional.ofNullable(filter) {
+    public void listTasks(String filter) {
         List<Task> tasks = storage.loadTasks();
         List<Task> filtered = filterTasks(tasks, filter);
 
@@ -89,4 +89,7 @@ public class TaskManager {
             }
         }
     }
+    
+    private String formatTask(Task task) {}
+    
 }
