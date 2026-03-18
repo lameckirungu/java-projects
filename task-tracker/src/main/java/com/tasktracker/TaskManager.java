@@ -19,4 +19,17 @@ public class TaskManager {
 
         System.out.println("Tas added successfully (ID: " + id + ")");
     }
+
+    public void update(int id, String newDescription) {
+        List<Task> tasks = storage.loadTasks();
+        Task task = findById(tasks, id);
+
+        if (task == null) {
+            System.err.println("Task not found (ID: " + id + ")");
+        }
+
+        task.updateDescription(newDescription);
+        storage.saveTasks(tasks);
+        System.out.println("Task updated successfully (ID: " + id + ")");
+    }
 }
