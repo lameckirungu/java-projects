@@ -38,4 +38,13 @@ public class TaskStorage {
             System.err.println("Failed to write tasks.json: " + e.getMessage());
         }
     }
+    public int getNextId(List<Task> tasks) {
+        int max = 0;
+        for (Task task : tasks) {
+            if (task.getId() > max) {
+                max = task.getId();
+            }
+        }
+        return max + 1
+    }
 }
