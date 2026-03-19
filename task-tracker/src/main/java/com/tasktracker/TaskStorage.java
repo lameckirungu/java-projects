@@ -24,5 +24,18 @@ public class TaskStorage {
         if (raw.isEmpty() || raw.equals("[]")) {
             return new ArrayList<>();
         }
+        return parseTasks(raw);
+    }
+
+    public void saveTasks(List<Task> tasks) {
+        Path path = Paths.get(STORAGE_FILE);
+        ensureFileExists(path);
+
+        String json = toJson(tasks);
+        try {
+            Files.writeString(path, json);
+        } catch (IOException e) {
+            System.err.println("Failed to write tasks.json: " + e.getMessage());
+        }
     }
 }
