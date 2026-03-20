@@ -11,7 +11,7 @@ public class TaskManager {
     }
 
     public void add(String description) {
-        List<Task> tasks = storage.loadTasks()
+        List<Task> tasks = storage.loadTasks();
         int id = storage.getNextId(tasks);
 
         Task task = new Task(id, description);
@@ -33,17 +33,19 @@ public class TaskManager {
         System.out.println("Task updated successfully (ID: " + id + ")");
     }
 
-    public void update(int id) {
+    public void delete(int id) {
         List<Task> tasks = storage.loadTasks();
         Task task = findById(tasks, id);
-    }
-    if (task == null) {
-        System.err.println("Task not found.");
-    }
 
-    task.remove(task);
-    storage.saveTasks(tasks);
-    System.out.println("Task Deleted successfully");
+        if (task == null) {
+            System.err.println("Task not found.");
+            return;
+        }
+
+        tasks.remove(task);
+        storage.saveTasks(tasks);
+        System.out.println("Task deleted successfully");
+    }
 
     public void markInProgress(int id) {
         List<Task> tasks = storage.loadTasks();
@@ -91,6 +93,8 @@ public class TaskManager {
         return null;
     }
     
-    private String formatTask(Task task) {}
+    private String formatTask(Task task) {
+        return task.getId() + ". " + task.getDescription() + " [" + task.getStatus() + "]";
+    }
     
 }
