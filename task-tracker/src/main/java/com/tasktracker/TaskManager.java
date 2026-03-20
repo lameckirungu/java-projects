@@ -97,4 +97,14 @@ public class TaskManager {
         return task.getId() + ". " + task.getDescription() + " [" + task.getStatus() + "]";
     }
     
+    private List<Task> filterTasks(List<Task> tasks, String filter) {
+        List<Task> filtered = new ArrayList<>();
+        for (Task task : tasks) {
+            if (filter == null || filter.isEmpty() || task.getStatus().toString().equalsIgnoreCase(filter)) {
+                filtered.add(task);
+            }
+        }
+        return filtered;
+    }
+    
 }
