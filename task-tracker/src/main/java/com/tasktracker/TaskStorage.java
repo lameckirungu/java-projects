@@ -45,6 +45,27 @@ public class TaskStorage {
                 max = task.getId();
             }
         }
-        return max + 1
+        return max + 1;
+    }
+
+    private void ensureFileExists(Path path) {
+        try {
+            if (!Files.exists(path)) {
+                Files.createFile(path);
+                Files.writeString(path, "[]");
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to create tasks.json: " + e.getMessage());
+        }
+    }
+
+    private List<Task> parseTasks(String json) {
+        // TODO: Implement JSON parsing logic
+        return new ArrayList<>();
+    }
+
+    private String toJson(List<Task> tasks) {
+        // TODO: Implement JSON serialization logic
+        return "[]";
     }
 }
