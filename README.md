@@ -33,6 +33,17 @@ Projects will live in dedicated folders, for example:
 
 ---
 
+## What you’ll find here
+
+Each project typically includes:
+
+- a short description (what it does + why it exists)
+- key concepts practiced (e.g., streams, concurrency, SOLID, Spring Security)
+- build/run steps
+- tests (when applicable)
+- notes on lessons learned and next improvements
+
+---
 
 ## Tech & Tools (will expand)
 
