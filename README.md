@@ -15,6 +15,37 @@ It will contain small experiments, kata-style practice, and full applications—
 
 ---
 
+## Repository Structure (planned)
+
+Projects will live in dedicated folders, for example:
+
+- `basics/` — language fundamentals, syntax drills, small exercises  
+- `dsa/` — data structures & algorithms in Java  
+- `oop-design/` — OOP principles, design patterns, clean code exercises  
+- `cli-apps/` — command-line utilities and mini tools  
+- `spring/` — Spring Boot services, REST APIs, security, validation, etc.  
+- `data-access/` — JDBC, JPA/Hibernate, SQL practice, migrations  
+- `testing/` — unit/integration testing (JUnit, Mockito, Testcontainers, etc.)  
+- `microservices/` — distributed systems patterns (later stage)  
+- `system-design/` — notes + implementations of patterns and architectures  
+
+> The structure may change as the repo grows—each project will include its own README with setup instructions.
+
+---
+
+
+## Tech & Tools (will expand)
+
+- Java (main language)
+- Maven and/or Gradle
+- Git + GitHub
+- JUnit / Mockito (testing)
+- Spring Boot (backend / APIs)
+- SQL + databases (PostgreSQL, MySQL, etc.)
+- Docker (for local development & deployments)
+
+---
+
 ## How to run projects
 
 Most projects will be runnable with either Maven or Gradle:
